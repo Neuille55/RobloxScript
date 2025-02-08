@@ -24,7 +24,9 @@ userInputService.InputBegan:Connect(function(input, gameProcessed)
     if input.UserInputType == Enum.UserInputType.MouseButton2 and not gameProcessed then
         local target = getClosestPlayer()
         if target then
-            camera.CFrame = CFrame.new(camera.CFrame.Position, target.Position)
+            local targetPosition = target.Position
+            local direction = (targetPosition - camera.CFrame.Position).unit
+            camera.CFrame = CFrame.new(camera.CFrame.Position, camera.CFrame.Position + direction)
         end
     end
 end)
